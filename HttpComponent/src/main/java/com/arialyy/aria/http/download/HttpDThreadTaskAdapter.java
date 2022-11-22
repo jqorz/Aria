@@ -174,7 +174,7 @@ final class HttpDThreadTaskAdapter extends BaseHttpThreadTaskAdapter {
     } finally {
       if (fos != null) {
         try {
-          file.flush();
+          fos.flush();
           fos.close();
         } catch (IOException e) {
           e.printStackTrace();
