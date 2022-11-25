@@ -38,7 +38,3 @@ dependencies {
 }
 
 //apply from: 'bintray-release.gradle'
-ext{
-  PUBLISH_ARTIFACT_ID = 'sftp'
-}
-apply from: '../gradle/mavenCentral-release.gradle'

@@ -1,2 +1,10 @@
-include ':app', ':Aria', ':AriaAnnotations', ':AriaCompiler', ':AppFrame', ':HttpComponent', ':M3U8Component', ':SFtpComponent',
-    ':FtpComponent', ':PublicComponent'
+include ':app'
+include ':Aria'
+include ':AriaAnnotations'
+include ':AriaCompiler'
+include ':AppFrame'
+include ':HttpComponent'
+include ':M3U8Component'
+include ':SFtpComponent'
+include ':FtpComponent'
+include ':PublicComponent'

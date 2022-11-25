@@ -35,7 +35,3 @@ dependencies {
 }
 
 //apply from: 'bintray-release.gradle'
-ext{
-  PUBLISH_ARTIFACT_ID = 'http'
-}
-apply from: '../gradle/mavenCentral-release.gradle'
