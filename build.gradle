@@ -53,21 +53,9 @@ ext {
   website = 'https://github.com/AriaLyy/Aria'
   licences = ['Apache-2.0']
 
-  // mavenCentral
-  mavenVersion = '3.8.16'
-  mavenCentralGroupId = 'me.laoyuyu.aria'
-  mavenCentralUserID = 'laoyuyu'
-  mavenCentralUserName = 'laoyuyu'
-  mavenCentralEmail = '511455842@qq.com'
-  mavenCentralLicences = 'Apache-2.0'
-  mavenCentralLicencesURL = 'https://www.apache.org/licenses/LICENSE-2.0'
-  mavenCentralConnection = 'scm:git:github.com/AriaLyy/Aria.git'
-  mavenCentralDeveloperConnection = 'scm:git:ssh://github.com/AriaLyy/Aria.git'
-  mavenCentralTreeURL = 'https://github.com/AriaLyy/KeepassA/tree/master'
-
   compileSdkVersion = 28
   supportLibVersion = "27.1.1"
-  buildToolsVersion = "29.0.2"
+  buildToolsVersion = "28.0.1"
   targetSdkVersion = 28
   lifecycleVersion = "1.1.1"
   minSdkVersion = 15
