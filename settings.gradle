@@ -1,7 +1,8 @@
 //include ':app'
-//include ':Aria'
-//include ':AriaAnnotations'
-//include ':AriaCompiler'
+include ':Aria'
+project(':Aria').projectDir = new File(settingsDir, 'Aria')
+include ':AriaAnnotations'
+include ':AriaCompiler'
 //include ':AppFrame'
 include ':HttpComponent'
 //include ':M3U8Component'
