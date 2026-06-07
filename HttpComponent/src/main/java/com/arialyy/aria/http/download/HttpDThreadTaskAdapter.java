@@ -34,7 +34,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Map;
 import java.util.Set;
@@ -188,12 +187,10 @@ final class HttpDThreadTaskAdapter extends BaseHttpThreadTaskAdapter {
    */
   private void readDynamicFile(InputStream is) {
     FileOutputStream fos = null;
-    FileChannel foc = null;
     ReadableByteChannel fic = null;
     try {
       int len;
       fos = new FileOutputStream(getThreadConfig().tempFile, true);
-      foc = fos.getChannel();
       fic = Channels.newChannel(is);
 
       ByteBuffer bf = ByteBuffer.allocate(getTaskConfig().getBuffSize());
@@ -206,18 +203,18 @@ final class HttpDThreadTaskAdapter extends BaseHttpThreadTaskAdapter {
         if (mSpeedBandUtil != null) {
           mSpeedBandUtil.limitNextBytes(len);
         }
-        if (getRangeProgress() + len >= getThreadRecord().endLocation) {
-          len = (int) (getThreadRecord().endLocation - getRangeProgress());
-          bf.flip();
-          fos.write(bf.array(), 0, len);
-          bf.compact();
-          progress(len);
+        bf.flip();
+        int available = bf.remaining();
+        if (getRangeProgress() + available >= getThreadRecord().endLocation) {
+          int writeLen = (int) (getThreadRecord().endLocation - getRangeProgress());
+          fos.write(bf.array(), 0, writeLen);
+          bf.clear();
+          progress(writeLen);
           break;
         } else {
-          bf.flip();
-          foc.write(bf);
-          bf.compact();
-          progress(len);
+          fos.write(bf.array(), 0, available);
+          bf.clear();
+          progress(available);
         }
       }
       handleComplete();
@@ -229,9 +226,6 @@ final class HttpDThreadTaskAdapter extends BaseHttpThreadTaskAdapter {
         if (fos != null) {
           fos.flush();
           fos.close();
-        }
-        if (foc != null) {
-          foc.close();
         }
         if (fic != null) {
           fic.close();
