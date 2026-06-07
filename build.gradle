@@ -43,7 +43,7 @@ task clean(type: Delete) {
 
 ext {
   versionCode = 390
-  versionName = '3.8.16.13'
+  versionName = '3.8.16.14'
   userOrg = 'jqorz'
   groupId = 'com.github.jqorz'
   publishVersion = versionName

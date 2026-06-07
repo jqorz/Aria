@@ -187,7 +187,7 @@ public final class BufferedRandomAccessFile extends RandomAccessFile {
       cnt += n;
       rem -= n;
     }
-    if ((cnt < 0) && (this.hitEOF_ = (cnt < this.buff_.length))) {
+    if ((rem > 0) && (this.hitEOF_ = (cnt < this.buff_.length))) {
       // make sure buffer that wasn't read is initialized with -1
       Arrays.fill(this.buff_, cnt, this.buff_.length, (byte) 0xff);
     }
