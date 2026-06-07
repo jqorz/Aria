@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+ext { artifactId = 'Aria' }
+
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
@@ -34,4 +36,4 @@ dependencies {
   api project(path: ':HttpComponent')
 }
 
-//apply from: 'bintray-release.gradle'
+apply from: "${rootProject.projectDir}/publish-maven-local.gradle"

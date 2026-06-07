@@ -1,0 +1,65 @@
+apply plugin: 'maven-publish'
+
+// 每个模块需要在自己的 build.gradle 中设置 ext.artifactId
+// 例如: ext { artifactId = 'aria' }
+
+// AGP 8.x 需要显式启用 release 变体的发布
+if (project.plugins.hasPlugin('com.android.library')) {
+    android {
+        publishing {
+            singleVariant('release')
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = rootProject.ext.groupId
+                artifactId = project.ext.artifactId
+                version = rootProject.ext.publishVersion
+
+                // Android Library 模块使用 release 组件
+                if (project.plugins.hasPlugin('com.android.library')) {
+                    from components.release
+                }
+                // Java 模块使用 java 组件
+                else if (project.plugins.hasPlugin('java')) {
+                    from components.java
+                }
+
+                pom {
+                    name = artifactId
+                    description = rootProject.ext.desc
+                    url = rootProject.ext.website
+
+                    licenses {
+                        license {
+                            name = rootProject.ext.licences[0]
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = rootProject.ext.userOrg
+                            name = rootProject.ext.userOrg
+                            url = rootProject.ext.website
+                        }
+                    }
+
+                    scm {
+                        connection = "scm:git:${rootProject.ext.website}.git"
+                        developerConnection = "scm:git:ssh://github.com/AriaLyy/Aria.git"
+                        url = rootProject.ext.website
+                    }
+                }
+            }
+        }
+
+        repositories {
+            mavenLocal()
+        }
+    }
+}

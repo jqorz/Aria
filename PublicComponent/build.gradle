@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+ext { artifactId = 'aria-public-component' }
+
 android {
   namespace 'com.arialyy.aria.publiccomponent'
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -36,4 +38,4 @@ dependencies {
   testImplementation 'junit:junit:4.12'
 }
 
-//apply from: 'bintray-release.gradle'
+apply from: "${rootProject.projectDir}/publish-maven-local.gradle"

@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
+ext { artifactId = 'aria-compiler' }
+
 tasks.withType(JavaCompile) {
   options.encoding = "UTF-8"
 }
@@ -15,4 +17,4 @@ dependencies {
   implementation project(':AriaAnnotations')
 }
 
-//apply from: 'bintray-release.gradle'
+apply from: "${rootProject.projectDir}/publish-maven-local.gradle"

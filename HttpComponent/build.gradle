@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+ext { artifactId = 'aria-http' }
+
 android {
   namespace 'com.arialyy.aria.http'
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,4 +37,4 @@ dependencies {
   implementation project(path: ':PublicComponent')
 }
 
-//apply from: 'bintray-release.gradle'
+apply from: "${rootProject.projectDir}/publish-maven-local.gradle"
