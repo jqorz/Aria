@@ -9,7 +9,7 @@ buildscript {
     maven { url "https://maven.aliyun.com/repository/public" }
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.2.2'
+    classpath 'com.android.tools.build:gradle:8.9.1'
 //    classpath 'com.novoda:bintray-release:0.9.1'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20"
     //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'

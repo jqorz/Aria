@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+  namespace 'com.arialyy.aria.http'
   compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
 
